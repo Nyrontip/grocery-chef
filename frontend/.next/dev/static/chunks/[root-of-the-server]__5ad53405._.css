@@ -1,29 +1,28 @@
 @import "https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&display=swap";
 @import "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined";
 /* [project]/src/app/globals.css [app-client] (css) */
-body {
-  font-family: Public Sans, sans-serif;
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Public Sans, sans-serif;
 }
 
 body {
+  color: #0f172a;
   background: #f8fafc;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   min-height: 100vh;
-  padding: 20px;
+  margin: 0;
+  font-family: Public Sans, sans-serif;
   display: flex;
 }
 
-.container {
-  width: 100%;
-  max-width: 420px;
+html, body {
+  height: 100%;
+}
+
+main {
+  flex: 1;
 }
 
 /* [next]/internal/font/google/public_sans_6c5788d3.module.css [app-client] (css) */
