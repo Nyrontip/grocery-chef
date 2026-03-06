@@ -8,6 +8,9 @@
     ],
     "[project]/src/app/recipes/[id]/page": [
       "static/media/fa0520225c6f3d07-s.p.d28ba1c8.woff2"
+    ],
+    "[project]/src/app/recipes/new/page": [
+      "static/media/fa0520225c6f3d07-s.p.d28ba1c8.woff2"
     ]
   },
   "appUsingSizeAdjust": true,

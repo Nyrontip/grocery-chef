@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Mediterranean Quinoa Salad</title>
+    <title>Nueva Receta - Editor</title>
 
     <link rel="stylesheet" href="styles.css" />
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;600;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -20,110 +20,113 @@
   </head>
 
   <body>
-    <div class="container">
-      <header class="header">
-        <a class="back-btn" href="#">
-          <span class="arrow">←</span>
-          <span>Volver</span>
-        </a>
-
-        <div class="header-buttons">
-          <button class="icon-btn">
-            <span class="material-symbols-outlined">star</span>
-          </button>
-
-          <button class="icon-btn delete">
-            <span class="material-symbols-outlined">delete</span>
-          </button>
-
-          <button class="edit-btn">Edit Recipe</button>
-        </div>
-      </header>
-
-      <section class="hero">
-        <div class="tags">
-          <span class="tag primary">Healthy</span>
-          <span class="tag">Vegan</span>
-        </div>
-
-        <h1>Mediterranean Quinoa Salad</h1>
-
-        <p>
-          A vibrant and nutritious powerhouse packed with protein-rich quinoa,
-          crisp cucumbers, sun-ripened tomatoes, and a zesty lemon-herb
-          vinaigrette.
-        </p>
-      </section>
-
-      <div class="grid">
-        <div class="left-column">
-          <div class="stats-card">
-            <div class="stat">
-              <span class="material-symbols-outlined icon">schedule</span>
-              <p class="label">Time</p>
-              <p class="value">25 min</p>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="stat">
-              <span class="material-symbols-outlined icon"
-                >local_fire_department</span
-              >
-              <p class="label">Calories</p>
-              <p class="value">320 kcal</p>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="stat">
-              <span class="material-symbols-outlined icon">group</span>
-              <p class="label">Serves</p>
-              <p class="value">4 Pers.</p>
-            </div>
-          </div>
-
-          <div class="ingredients-card">
-            <h3>Ingredients</h3>
-
-            <label><input type="checkbox" /> 1 cup uncooked quinoa</label>
-            <label><input type="checkbox" /> 2 cups vegetable broth</label>
-            <label><input type="checkbox" /> 1 English cucumber, diced</label>
-            <label><input type="checkbox" /> 1 pint cherry tomatoes</label>
-            <label><input type="checkbox" /> 1/2 cup Kalamata olives</label>
-            <label><input type="checkbox" /> 1/4 cup olive oil</label>
-            <label><input type="checkbox" /> Juice of 1 lemon</label>
-            <label><input type="checkbox" /> Fresh parsley and mint</label>
-          </div>
-        </div>
-
-        <div class="right-column">
-          <div class="steps-card">
-            <h3>Preparation Steps</h3>
-
-            <p>
-              1. Rinse quinoa and cook with vegetable broth for 15 minutes.
-
-              <br /><br />
-
-              2. Chop cucumber, tomatoes, olives and herbs.
-
-              <br /><br />
-
-              3. Mix olive oil, lemon juice, garlic, oregano, salt and pepper.
-
-              <br /><br />
-
-              4. Combine everything and toss well. Serve chilled or room
-              temperature.
-            </p>
-          </div>
-        </div>
+    <header class="navbar">
+      <div class="logo">
+        <span class="material-symbols-outlined icon-green"
+          >restaurant_menu</span
+        >
+        <h2>Cocinero Pro</h2>
       </div>
 
-      <footer>
-        <p>© 2024 FreshEats. All rights reserved.</p>
-      </footer>
-    </div>
+      <button class="icon-btn">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </header>
+
+    <main class="container">
+      <div class="title-section">
+        <h1>Crear Nueva Receta</h1>
+        <p>
+          Comparte tu talento culinario con el mundo. Completa los detalles a
+          continuación.
+        </p>
+      </div>
+
+      <form class="form">
+        <section class="card">
+          <h2 class="section-title">
+            <span class="material-symbols-outlined icon-green">info</span>
+            Información Básica
+          </h2>
+
+          <label>
+            Título de la receta
+            <input
+              type="text"
+              placeholder="Ej. Lasaña de Berenjena de la Abuela"
+            />
+          </label>
+
+          <label>
+            Descripción corta
+            <textarea
+              rows="3"
+              placeholder="Cuéntanos qué hace especial a este plato..."
+            ></textarea>
+          </label>
+        </section>
+
+        <section class="card">
+          <h2 class="section-title">
+            <span class="material-symbols-outlined icon-green"
+              >shopping_basket</span
+            >
+            Ingredientes
+          </h2>
+
+          <div class="ingredient-row">
+            <input type="text" placeholder="Harina de trigo" />
+
+            <input type="number" placeholder="500" />
+
+            <select>
+              <option>gramos (g)</option>
+              <option>kilogramos (kg)</option>
+              <option>mililitros (ml)</option>
+              <option>litros (l)</option>
+              <option>unidades</option>
+              <option>cucharadas</option>
+            </select>
+
+            <button type="button" class="delete-btn">
+              <span class="material-symbols-outlined">delete</span>
+            </button>
+          </div>
+
+          <button type="button" class="add-btn">
+            <span class="material-symbols-outlined">add_circle</span>
+            Agregar ingrediente
+          </button>
+        </section>
+
+        <section class="card">
+          <h2 class="section-title">
+            <span class="material-symbols-outlined icon-green"
+              >format_list_numbered</span
+            >
+            Pasos de Preparación
+          </h2>
+
+          <label>
+            Instrucciones detalladas
+            <textarea rows="8"></textarea>
+          </label>
+
+          <p class="tip">
+            Protip: Describe cada paso de forma clara y menciona los tiempos de
+            cocción.
+          </p>
+        </section>
+
+        <div class="actions">
+          <button type="button" class="cancel-btn">Cancelar</button>
+
+          <button type="submit" class="save-btn">
+            <span class="material-symbols-outlined">save</span>
+            Guardar receta
+          </button>
+        </div>
+      </form>
+    </main>
   </body>
 </html>
