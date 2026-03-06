@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Mis Recetas - Dashboard</title>
+    <title>Mediterranean Quinoa Salad</title>
 
     <link rel="stylesheet" href="styles.css" />
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;600;700;900&display=swap"
       rel="stylesheet"
     />
 
@@ -20,120 +20,110 @@
   </head>
 
   <body>
-    <header class="header">
-      <div class="logo">
-        <span class="material-symbols-outlined icon">restaurant_menu</span>
-        <h2>Mis Recetas</h2>
-      </div>
-
-      <nav class="nav">
-        <a href="#">Dashboard</a>
-
-        <a href="#" class="cart">
-          <span class="material-symbols-outlined">shopping_cart</span>
-          Lista de Compras
+    <div class="container">
+      <header class="header">
+        <a class="back-btn" href="#">
+          <span class="arrow">←</span>
+          <span>Volver</span>
         </a>
-      </nav>
 
-      <div class="header-actions">
-        <input type="text" placeholder="Buscar recetas..." class="search" />
+        <div class="header-buttons">
+          <button class="icon-btn">
+            <span class="material-symbols-outlined">star</span>
+          </button>
 
-        <button class="btn-primary">Crear receta</button>
+          <button class="icon-btn delete">
+            <span class="material-symbols-outlined">delete</span>
+          </button>
 
-        <div class="avatar"></div>
-      </div>
-    </header>
-
-    <main class="container">
-      <div class="title">
-        <h1>Mi Cocina</h1>
-        <p>Gestiona y descubre tus platos favoritos.</p>
-      </div>
-
-      <div class="tabs">
-        <div class="tab active">
-          <span class="material-symbols-outlined">grid_view</span>
-          Todas
+          <button class="edit-btn">Edit Recipe</button>
         </div>
-      </div>
+      </header>
 
-      <div class="recipes">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-header">
-              <h3>Paella Valenciana</h3>
+      <section class="hero">
+        <div class="tags">
+          <span class="tag primary">Healthy</span>
+          <span class="tag">Vegan</span>
+        </div>
 
-              <span class="time">35 min</span>
+        <h1>Mediterranean Quinoa Salad</h1>
+
+        <p>
+          A vibrant and nutritious powerhouse packed with protein-rich quinoa,
+          crisp cucumbers, sun-ripened tomatoes, and a zesty lemon-herb
+          vinaigrette.
+        </p>
+      </section>
+
+      <div class="grid">
+        <div class="left-column">
+          <div class="stats-card">
+            <div class="stat">
+              <span class="material-symbols-outlined icon">schedule</span>
+              <p class="label">Time</p>
+              <p class="value">25 min</p>
             </div>
 
-            <p>
-              Receta tradicional con arroz bomba, azafrán de hebra y una
-              selección de mariscos frescos del Mediterráneo.
-            </p>
+            <div class="divider"></div>
 
-            <button class="btn-secondary">
-              Ver detalle
-              <span class="material-symbols-outlined">arrow_forward</span>
-            </button>
+            <div class="stat">
+              <span class="material-symbols-outlined icon"
+                >local_fire_department</span
+              >
+              <p class="label">Calories</p>
+              <p class="value">320 kcal</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="stat">
+              <span class="material-symbols-outlined icon">group</span>
+              <p class="label">Serves</p>
+              <p class="value">4 Pers.</p>
+            </div>
+          </div>
+
+          <div class="ingredients-card">
+            <h3>Ingredients</h3>
+
+            <label><input type="checkbox" /> 1 cup uncooked quinoa</label>
+            <label><input type="checkbox" /> 2 cups vegetable broth</label>
+            <label><input type="checkbox" /> 1 English cucumber, diced</label>
+            <label><input type="checkbox" /> 1 pint cherry tomatoes</label>
+            <label><input type="checkbox" /> 1/2 cup Kalamata olives</label>
+            <label><input type="checkbox" /> 1/4 cup olive oil</label>
+            <label><input type="checkbox" /> Juice of 1 lemon</label>
+            <label><input type="checkbox" /> Fresh parsley and mint</label>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-content">
-            <div class="card-header">
-              <h3>Tacos al Pastor</h3>
-
-              <span class="time">25 min</span>
-            </div>
+        <div class="right-column">
+          <div class="steps-card">
+            <h3>Preparation Steps</h3>
 
             <p>
-              Auténticos tacos mexicanos con carne de cerdo marinada en achiote,
-              piña asada, cilantro y cebolla.
+              1. Rinse quinoa and cook with vegetable broth for 15 minutes.
+
+              <br /><br />
+
+              2. Chop cucumber, tomatoes, olives and herbs.
+
+              <br /><br />
+
+              3. Mix olive oil, lemon juice, garlic, oregano, salt and pepper.
+
+              <br /><br />
+
+              4. Combine everything and toss well. Serve chilled or room
+              temperature.
             </p>
-
-            <button class="btn-secondary">
-              Ver detalle
-              <span class="material-symbols-outlined">arrow_forward</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-content">
-            <div class="card-header">
-              <h3>Ensalada César</h3>
-
-              <span class="time">15 min</span>
-            </div>
-
-            <p>
-              Clásica y refrescante ensalada con lechuga romana, aderezo cremoso
-              casero, crutones de ajo y parmesano.
-            </p>
-
-            <button class="btn-secondary">
-              Ver detalle
-              <span class="material-symbols-outlined">arrow_forward</span>
-            </button>
           </div>
         </div>
       </div>
-    </main>
 
-    <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <span class="material-symbols-outlined">restaurant_menu</span>
-          <span>Mis Recetas</span>
-        </div>
-
-        <p>© 2024 Mis Recetas. Hecho con amor para cocineros.</p>
-
-        <div class="footer-icons">
-          <span class="material-symbols-outlined">share</span>
-          <span class="material-symbols-outlined">mail</span>
-        </div>
-      </div>
-    </footer>
+      <footer>
+        <p>© 2024 FreshEats. All rights reserved.</p>
+      </footer>
+    </div>
   </body>
 </html>
