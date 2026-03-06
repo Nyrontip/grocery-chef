@@ -1,0 +1,65 @@
+# ==============================
+#  NODE / NPM
+# ==============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# ==============================
+#  TYPESCRIPT
+# ==============================
+dist/
+build/
+*.tsbuildinfo
+
+# ==============================
+#  VARIABLES DE ENTORNO
+# ==============================
+.env
+.env.local
+.env.development
+.env.production
+.env.docker
+
+# ==============================
+#  DOCKER
+# ==============================
+docker-compose.override.yml
+
+# ==============================
+#  LOGS
+# ==============================
+logs/
+*.log
+
+# ==============================
+#  SISTEMA OPERATIVO
+# ==============================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==============================
+#  EDITORES
+# ==============================
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ==============================
+#  REACT / VITE (frontend)
+# ==============================
+frontend/dist/
+frontend/.vite/
+frontend/build/
+
+# ==============================
+#  MISC
+# ==============================
+coverage/
+.nyc_output/
