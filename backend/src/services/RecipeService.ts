@@ -54,9 +54,9 @@ export class RecipeService {
         }
 
         //return await this.recipeRepository.findById(recipe.id, userId);
-        // Retornar la receta con los datos que ya tenemos
+        // Retornar la receta con los datos que ya tenemos (solo dataValues)
         return {
-            ...recipe,
+            ...recipe.dataValues,
             ingredients: ingredients || []
         };
     }
