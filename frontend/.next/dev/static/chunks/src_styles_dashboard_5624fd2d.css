@@ -14,8 +14,14 @@ body {
 .header {
   background: #fff;
   border-bottom: 1px solid #e2e8f0;
+  width: 100%;
+}
+
+.header-inner {
   justify-content: space-between;
   align-items: center;
+  max-width: 1200px;
+  margin: auto;
   padding: 20px 40px;
   display: flex;
 }
@@ -108,12 +114,15 @@ body {
 
 .tabs {
   border-bottom: 1px solid #e2e8f0;
+  gap: 20px;
   margin-top: 30px;
   padding-bottom: 10px;
+  display: flex;
 }
 
 .tab {
   color: #22c55e;
+  cursor: pointer;
   align-items: center;
   gap: 6px;
   font-weight: 700;
@@ -165,8 +174,8 @@ body {
 .footer {
   background: #fff;
   border-top: 1px solid #e2e8f0;
+  width: 100%;
   margin-top: 60px;
-  padding: 30px;
 }
 
 .footer-content {
@@ -174,6 +183,7 @@ body {
   align-items: center;
   max-width: 1200px;
   margin: auto;
+  padding: 30px 40px;
   display: flex;
 }
 

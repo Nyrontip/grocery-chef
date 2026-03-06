@@ -1,9 +1,10 @@
-import "@/styles/dashboard.css";
-
 import Header from "@/components/dashboard/Header";
+import PageTitle from "@/components/dashboard/PageTitle";
 import Tabs from "@/components/dashboard/Tabs";
 import RecipesGrid from "@/components/dashboard/RecipesGrid";
 import Footer from "@/components/dashboard/Footer";
+
+import "@/styles/dashboard.css";
 
 export default function DashboardPage() {
   return (
@@ -11,13 +12,8 @@ export default function DashboardPage() {
       <Header />
 
       <main className="container">
-        <div className="title">
-          <h1>Mi Cocina</h1>
-          <p>Gestiona y descubre tus platos favoritos.</p>
-        </div>
-
+        <PageTitle />
         <Tabs />
-
         <RecipesGrid />
       </main>
 

@@ -10,13 +10,22 @@ body {
   color: #0f172a;
 }
 
+/* HEADER */
+
 .header {
+  width: 100%;
+  border-bottom: 1px solid #e2e8f0;
+  background: white;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px 40px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
-  border-bottom: 1px solid #e2e8f0;
-  background: white;
 }
 
 .logo {
@@ -91,6 +100,8 @@ body {
   background-size: cover;
 }
 
+/* MAIN */
+
 .container {
   max-width: 1200px;
   margin: auto;
@@ -106,10 +117,14 @@ body {
   color: #64748b;
 }
 
+/* TABS */
+
 .tabs {
   margin-top: 30px;
   border-bottom: 1px solid #e2e8f0;
   padding-bottom: 10px;
+  display: flex;
+  gap: 20px;
 }
 
 .tab {
@@ -118,7 +133,10 @@ body {
   gap: 6px;
   font-weight: 700;
   color: #22c55e;
+  cursor: pointer;
 }
+
+/* RECIPES GRID */
 
 .recipes {
   margin-top: 30px;
@@ -162,9 +180,11 @@ body {
   font-size: 14px;
 }
 
+/* FOOTER */
+
 .footer {
+  width: 100%;
   margin-top: 60px;
-  padding: 30px;
   border-top: 1px solid #e2e8f0;
   background: white;
 }
@@ -172,6 +192,8 @@ body {
 .footer-content {
   max-width: 1200px;
   margin: auto;
+  padding: 30px 40px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;

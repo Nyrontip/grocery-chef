@@ -1,10 +1,14 @@
-type Props = {
+type RecipeCardProps = {
   title: string;
   time: string;
   description: string;
 };
 
-export default function RecipeCard({ title, time, description }: Props) {
+export default function RecipeCard({
+  title,
+  time,
+  description,
+}: RecipeCardProps) {
   return (
     <div className="card">
       <div className="card-content">
