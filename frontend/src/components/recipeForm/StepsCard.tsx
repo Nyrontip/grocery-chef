@@ -1,4 +1,8 @@
-export default function StepsCard() {
+type Props = {
+  initialSteps?: string;
+};
+
+export default function StepsCard({ initialSteps = "" }: Props) {
   return (
     <section className="card">
       <h2 className="section-title">
@@ -10,7 +14,7 @@ export default function StepsCard() {
 
       <label>
         Instrucciones detalladas
-        <textarea rows={8}></textarea>
+        <textarea rows={8} defaultValue={initialSteps}></textarea>
       </label>
 
       <p className="tip">

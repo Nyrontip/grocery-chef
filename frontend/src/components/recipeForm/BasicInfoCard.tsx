@@ -1,4 +1,12 @@
-export default function BasicInfoCard() {
+type Props = {
+  initialTitle?: string;
+  initialDescription?: string;
+};
+
+export default function BasicInfoCard({
+  initialTitle = "",
+  initialDescription = "",
+}: Props) {
   return (
     <section className="card">
       <h2 className="section-title">
@@ -8,15 +16,12 @@ export default function BasicInfoCard() {
 
       <label>
         Título de la receta
-        <input type="text" placeholder="Ej. Lasaña de Berenjena de la Abuela" />
+        <input type="text" defaultValue={initialTitle} />
       </label>
 
       <label>
         Descripción corta
-        <textarea
-          rows={3}
-          placeholder="Cuéntanos qué hace especial a este plato..."
-        ></textarea>
+        <textarea rows={3} defaultValue={initialDescription}></textarea>
       </label>
     </section>
   );
