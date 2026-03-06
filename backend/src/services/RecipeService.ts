@@ -10,9 +10,9 @@ export class RecipeService {
         this.ingredientRepository = new IngredientRepository();
     }
 
-    // Listar todas las recetas de un usuario
-    async getAllByUserId(userId: number) {
-        return await this.recipeRepository.findAllByUserId(userId);
+    // Listar todas las recetas de un usuario (solo favoritos si se especifica)
+    async getAllByUserId(userId: number, favoritesOnly?: boolean) {
+        return await this.recipeRepository.findAllByUserId(userId, favoritesOnly);
     }
 
     // Ver detalle de una receta con sus ingredientes
@@ -67,4 +67,46 @@ export class RecipeService {
         if (!deleted) throw new Error('Recipe not found');
         return true;
     }
+
+    // Activar o desactivar
+    async toggleFavorite(id: number, userId: number) {
+        const recipe = await this.recipeRepository.toggleFavorite(id, userId);
+        if (!recipe) throw new Error('Recipe not found');
+        return recipe;
+    }
+
+    // Editar receta — actualiza solo los campos que lleguen
+    // Si también vienen ingredientes nuevos, reemplaza los existentes
+    async update(
+        id: number,
+        userId: number,
+        data: {
+            title?: string;
+            description?: string;
+            steps?: string;
+            ingredients?: { name: string; quantity: number; unit: string }[];
+        }
+    ) {
+        const { ingredients, ...recipeFields } = data;
+
+        // Actualizar campos de la receta
+        const recipe = await this.recipeRepository.update(id, userId, recipeFields);
+        if (!recipe) throw new Error('Recipe not found');
+
+        // Si vienen ingredientes, reemplazar los existentes
+        if (ingredients !== undefined) {
+            await this.ingredientRepository.deleteByRecipe(id);
+            if (ingredients.length > 0) {
+                const ingredientsData = ingredients.map((ing) => ({
+                    ...ing,
+                    recipeId: id,
+                }));
+                await this.ingredientRepository.createMany(ingredientsData);
+            }
+        }
+
+        // Retornar la receta actualizada con ingredientes
+        return await this.recipeRepository.findById(id, userId);
+    }
+
 }
