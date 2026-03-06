@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["file:///home/simondavid/Escritorio/DEVELOP/GroceryChef/frontend/src/components/LoginCard.module.css"],"sourcesContent":[".card {\n  background: white;\n  border-radius: 12px;\n  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);\n  border: 1px solid #e2e8f0;\n  overflow: hidden;\n}\n"],"names":[],"mappings":"AAAA"}},
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///home/simondavid/Escritorio/DEVELOP/GroceryChef/frontend/src/components/LoginHeader.module.css"],"sourcesContent":[".header {\n  text-align: center;\n  padding: 40px 30px 20px;\n}\n\n.iconCircle {\n  background: #dcfce7;\n  width: 60px;\n  height: 60px;\n  border-radius: 50%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin: auto;\n  margin-bottom: 15px;\n}\n\n.iconMain {\n  font-size: 36px;\n  color: #22c55e;\n}\n\n.title {\n  font-size: 28px;\n  font-weight: 900;\n  color: #0f172a;\n}\n\n.subtitle {\n  margin-top: 8px;\n  color: #64748b;\n  font-weight: 500;\n}\n"],"names":[],"mappings":"AAAA;;;;;AAKA;;;;;;;;;;;AAYA;;;;;AAKA;;;;;;AAMA"}}]
+}

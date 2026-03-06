@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["file:///home/simondavid/Escritorio/DEVELOP/GroceryChef/frontend/src/components/LoginForm.module.css"],"sourcesContent":[".formContainer {\n  padding: 20px 30px 40px;\n}\n\n.formGroup {\n  margin-bottom: 18px;\n}\n\n.inputBox {\n  position: relative;\n}\n\n.icon {\n  position: absolute;\n  left: 12px;\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n.input {\n  width: 100%;\n  padding: 12px 12px 12px 40px;\n  border-radius: 10px;\n  border: 1px solid #cbd5e1;\n}\n\n.loginBtn {\n  width: 100%;\n  background: #22c55e;\n  border: none;\n  padding: 14px;\n  color: white;\n  font-weight: 700;\n  border-radius: 10px;\n  cursor: pointer;\n}\n"],"names":[],"mappings":"AAAA;;;;AAIA;;;;AAIA;;;;AAIA;;;;;;;AAOA;;;;;;;AAOA"}}]
+}
