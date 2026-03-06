@@ -1,0 +1,41 @@
+/* [project]/src/components/LoginForm.module.css [app-client] (css) */
+.LoginForm-module__teg8eq__formContainer {
+  padding: 20px 30px 40px;
+}
+
+.LoginForm-module__teg8eq__formGroup {
+  margin-bottom: 18px;
+}
+
+.LoginForm-module__teg8eq__inputBox {
+  position: relative;
+}
+
+.LoginForm-module__teg8eq__icon {
+  color: #94a3b8;
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+}
+
+.LoginForm-module__teg8eq__input {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+}
+
+.LoginForm-module__teg8eq__loginBtn {
+  color: #fff;
+  cursor: pointer;
+  background: #22c55e;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  padding: 14px;
+  font-weight: 700;
+}
+
+/*# sourceMappingURL=src_components_LoginForm_module_css_bad6b30c._.single.css.map*/
