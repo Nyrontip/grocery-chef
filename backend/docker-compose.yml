@@ -3,9 +3,9 @@ services:
     image: postgres:15
     container_name: recetario_db
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: recetario_db
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
       - "5433:5432"
     volumes:
@@ -24,6 +24,7 @@ services:
     environment:
       PORT: 3000
       DB_HOST: db
+      DB_PORT: ${DB_PORT}
       DB_USER: admin
       DB_PASSWORD: password
       DB_NAME: recetario_db
