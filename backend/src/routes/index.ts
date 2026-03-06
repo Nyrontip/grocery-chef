@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { register, login } from '../controllers/AuthController';
 import { authMiddleware } from '../middleware/Auth';
-import { createRecipe, deleteRecipe, getAllRecipes, getRecipeById } from '../controllers/RecipeController';
+import { createRecipe, deleteRecipe, getAllRecipes, getRecipeById, toggleFavorite, updateRecipe } from '../controllers/RecipeController';
 
 const router = Router();
 
@@ -13,6 +13,8 @@ router.post('/auth/login', login);
 router.get('/recipes', authMiddleware, getAllRecipes);       
 router.get('/recipes/:id', authMiddleware, getRecipeById);  
 router.post('/recipes', authMiddleware, createRecipe);      
+router.patch('/recipes/:id/favorite', authMiddleware, toggleFavorite);
+router.put('/recipes/:id', authMiddleware, updateRecipe); 
 router.delete('/recipes/:id', authMiddleware, deleteRecipe); 
 
 
