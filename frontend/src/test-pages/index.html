@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Nueva Receta - Editor</title>
+    <title>Generador de Lista de Compras</title>
 
     <link rel="stylesheet" href="styles.css" />
 
@@ -12,7 +11,6 @@
       href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
@@ -20,113 +18,129 @@
   </head>
 
   <body>
-    <header class="navbar">
-      <div class="logo">
-        <span class="material-symbols-outlined icon-green"
-          >restaurant_menu</span
-        >
-        <h2>Cocinero Pro</h2>
+    <header class="header">
+      <div class="header-left">
+        <div class="logo">
+          <span class="material-symbols-outlined">restaurant_menu</span>
+          <h2>Mis Recetas</h2>
+        </div>
+
+        <nav class="nav">
+          <a href="#">Dashboard</a>
+
+          <a href="#" class="nav-cart">
+            <span class="material-symbols-outlined">shopping_cart</span>
+            Lista de Compras
+          </a>
+        </nav>
       </div>
 
-      <button class="icon-btn">
-        <span class="material-symbols-outlined">close</span>
-      </button>
+      <div class="header-right">
+        <div class="search">
+          <span class="material-symbols-outlined">search</span>
+          <input type="text" placeholder="Buscar recetas..." />
+        </div>
+
+        <button class="btn-primary">Crear receta</button>
+
+        <div class="avatar"></div>
+      </div>
     </header>
 
-    <main class="container">
-      <div class="title-section">
-        <h1>Crear Nueva Receta</h1>
-        <p>
-          Comparte tu talento culinario con el mundo. Completa los detalles a
-          continuación.
-        </p>
-      </div>
-
-      <form class="form">
-        <section class="card">
-          <h2 class="section-title">
-            <span class="material-symbols-outlined icon-green">info</span>
-            Información Básica
-          </h2>
-
-          <label>
-            Título de la receta
-            <input
-              type="text"
-              placeholder="Ej. Lasaña de Berenjena de la Abuela"
-            />
-          </label>
-
-          <label>
-            Descripción corta
-            <textarea
-              rows="3"
-              placeholder="Cuéntanos qué hace especial a este plato..."
-            ></textarea>
-          </label>
-        </section>
+    <main class="main">
+      <div class="container">
+        <!-- RECETAS -->
 
         <section class="card">
-          <h2 class="section-title">
-            <span class="material-symbols-outlined icon-green"
-              >shopping_basket</span
-            >
-            Ingredientes
-          </h2>
-
-          <div class="ingredient-row">
-            <input type="text" placeholder="Harina de trigo" />
-
-            <input type="number" placeholder="500" />
-
-            <select>
-              <option>gramos (g)</option>
-              <option>kilogramos (kg)</option>
-              <option>mililitros (ml)</option>
-              <option>litros (l)</option>
-              <option>unidades</option>
-              <option>cucharadas</option>
-            </select>
-
-            <button type="button" class="delete-btn">
-              <span class="material-symbols-outlined">delete</span>
-            </button>
+          <div class="card-header">
+            <h2>Seleccionar Recetas</h2>
+            <p>
+              Marca las recetas que quieres incluir en tu lista de compras
+              semanal.
+            </p>
           </div>
 
-          <button type="button" class="add-btn">
-            <span class="material-symbols-outlined">add_circle</span>
-            Agregar ingrediente
-          </button>
+          <div class="recipes">
+            <label class="recipe">
+              <input type="checkbox" checked />
+              <div>
+                <span>Pasta Carbonara</span>
+                <small>20 min • 4 personas</small>
+              </div>
+            </label>
+
+            <label class="recipe">
+              <input type="checkbox" />
+              <div>
+                <span>Ensalada César</span>
+                <small>15 min • 2 personas</small>
+              </div>
+            </label>
+
+            <label class="recipe">
+              <input type="checkbox" checked />
+              <div>
+                <span>Pollo al Horno</span>
+                <small>45 min • 4 personas</small>
+              </div>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="btn-secondary">Limpiar selección</button>
+
+            <button class="btn-primary">
+              <span class="material-symbols-outlined">receipt_long</span>
+              Generar lista
+            </button>
+          </div>
         </section>
+
+        <!-- TABLA -->
 
         <section class="card">
-          <h2 class="section-title">
-            <span class="material-symbols-outlined icon-green"
-              >format_list_numbered</span
-            >
-            Pasos de Preparación
-          </h2>
+          <div class="card-header">
+            <h2>Resultado de la Lista</h2>
+            <p>Ingredientes consolidados de las recetas seleccionadas.</p>
+          </div>
 
-          <label>
-            Instrucciones detalladas
-            <textarea rows="8"></textarea>
-          </label>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ingrediente</th>
+                  <th>Cantidad</th>
+                  <th>Unidad</th>
+                  <th>Categoría</th>
+                </tr>
+              </thead>
 
-          <p class="tip">
-            Protip: Describe cada paso de forma clara y menciona los tiempos de
-            cocción.
-          </p>
+              <tbody>
+                <tr>
+                  <td>Papas</td>
+                  <td>1.5</td>
+                  <td>kg</td>
+                  <td>Frescos</td>
+                </tr>
+
+                <tr>
+                  <td>Ajo</td>
+                  <td>4</td>
+                  <td>dientes</td>
+                  <td>Frescos</td>
+                </tr>
+
+                <tr>
+                  <td>Pechuga de Pollo</td>
+                  <td>800</td>
+                  <td>gr</td>
+                  <td>Proteína</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
-
-        <div class="actions">
-          <button type="button" class="cancel-btn">Cancelar</button>
-
-          <button type="submit" class="save-btn">
-            <span class="material-symbols-outlined">save</span>
-            Guardar receta
-          </button>
-        </div>
-      </form>
+      </div>
     </main>
   </body>
 </html>

@@ -1,4 +1,4 @@
-import Header from "@/components/dashboard/Header";
+import Header from "@/components/shared/Header";
 import PageTitle from "@/components/dashboard/PageTitle";
 import Tabs from "@/components/dashboard/Tabs";
 import RecipesGrid from "@/components/dashboard/RecipesGrid";
