@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Public Sans", sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
+
+  display: flex; /* layout vertical */
+  flex-direction: column; /* header → main → footer */
+  min-height: 100vh; /* ocupa toda la pantalla */
+  margin: 0; /* asegurar que no haya margen por defecto */
+}
+
+html,
+body {
+  height: 100%;
+}
+
+main {
+  flex: 1;
+}
