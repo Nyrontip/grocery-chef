@@ -1,51 +1,66 @@
-type Ingredient = {
-  name: string;
-  quantity: string;
-  unit: string;
-};
+"use client";
+
+import { Ingredient } from "@/services/recipes";
 
 type Props = {
   ingredients: Ingredient[];
-  onAddIngredient: () => void;
-  onRemoveIngredient: (index: number) => void;
-  onUpdateIngredient: (index: number, field: keyof Ingredient, value: string) => void;
+  setIngredients: React.Dispatch<React.SetStateAction<Ingredient[]>>;
 };
 
-export default function IngredientsCard({ 
-  ingredients, 
-  onAddIngredient, 
-  onRemoveIngredient, 
-  onUpdateIngredient 
+export default function IngredientsCard({
+  ingredients,
+  setIngredients,
 }: Props) {
+  // Actualiza un ingrediente
+  const handleChange = (
+    index: number,
+    field: keyof Ingredient,
+    value: string,
+  ) => {
+    setIngredients((prev) =>
+      prev.map((ingredient, i) =>
+        i === index ? { ...ingredient, [field]: value } : ingredient,
+      ),
+    );
+  };
+
+  // Añade un ingrediente vacío
+  const addIngredient = () => {
+    setIngredients((prev) => [
+      ...prev,
+      { name: "", quantity: "", unit: "gramos (g)" },
+    ]);
+  };
+
+  // Elimina un ingrediente por índice
+  const removeIngredient = (index: number) => {
+    setIngredients((prev) => prev.filter((_, i) => i !== index));
+  };
+
   return (
     <section className="card">
-      <h2 className="section-title">
-        <span className="material-symbols-outlined icon-green">
-          shopping_basket
-        </span>
-        Ingredientes
-      </h2>
+      <h2>Ingredientes</h2>
 
       <div className="ingredients-list">
-        {ingredients.map((ing, idx) => (
+        {ingredients.map((ingredient, idx) => (
           <div className="ingredient-row" key={idx}>
-            <input 
-              type="text" 
-              value={ing.name}
-              onChange={(e) => onUpdateIngredient(idx, 'name', e.target.value)}
+            <input
+              type="text"
               placeholder="Ingrediente"
+              value={ingredient.name}
+              onChange={(e) => handleChange(idx, "name", e.target.value)}
               required={idx === 0}
             />
-            <input 
-              type="text" 
-              value={ing.quantity}
-              onChange={(e) => onUpdateIngredient(idx, 'quantity', e.target.value)}
+            <input
+              type="text"
               placeholder="Cantidad"
+              value={ingredient.quantity}
+              onChange={(e) => handleChange(idx, "quantity", e.target.value)}
               required={idx === 0}
             />
-            <select 
-              value={ing.unit}
-              onChange={(e) => onUpdateIngredient(idx, 'unit', e.target.value)}
+            <select
+              value={ingredient.unit}
+              onChange={(e) => handleChange(idx, "unit", e.target.value)}
             >
               <option>gramos (g)</option>
               <option>kilogramos (kg)</option>
@@ -54,10 +69,10 @@ export default function IngredientsCard({
               <option>unidades</option>
               <option>cucharadas</option>
             </select>
-            <button 
-              type="button" 
+            <button
+              type="button"
               className="delete-btn"
-              onClick={() => onRemoveIngredient(idx)}
+              onClick={() => removeIngredient(idx)}
             >
               <span className="material-symbols-outlined">delete</span>
             </button>
@@ -65,7 +80,7 @@ export default function IngredientsCard({
         ))}
       </div>
 
-      <button type="button" className="add-btn" onClick={onAddIngredient}>
+      <button type="button" className="add-btn" onClick={addIngredient}>
         <span className="material-symbols-outlined">add_circle</span>
         Agregar ingrediente
       </button>
