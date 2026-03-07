@@ -1,4 +1,12 @@
-export default function ShoppingTableCard() {
+"use client";
+
+import { Ingredient } from "@/services/recipes";
+
+type Props = {
+  ingredients: Ingredient[];
+};
+
+export default function ShoppingTableCard({ ingredients }: Props) {
   return (
     <section className="card">
       <div className="card-header">
@@ -13,31 +21,23 @@ export default function ShoppingTableCard() {
               <th>Ingrediente</th>
               <th>Cantidad</th>
               <th>Unidad</th>
-              <th>Categoría</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr>
-              <td>Papas</td>
-              <td>1.5</td>
-              <td>kg</td>
-              <td>Frescos</td>
-            </tr>
-
-            <tr>
-              <td>Ajo</td>
-              <td>4</td>
-              <td>dientes</td>
-              <td>Frescos</td>
-            </tr>
-
-            <tr>
-              <td>Pechuga de Pollo</td>
-              <td>800</td>
-              <td>gr</td>
-              <td>Proteína</td>
-            </tr>
+            {ingredients.length === 0 ? (
+              <tr>
+                <td colSpan={3}>No hay ingredientes seleccionados.</td>
+              </tr>
+            ) : (
+              ingredients.map((ingredient, index) => (
+                <tr key={ingredient.id ?? index}>
+                  <td>{ingredient.name}</td>
+                  <td>{ingredient.quantity}</td>
+                  <td>{ingredient.unit}</td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

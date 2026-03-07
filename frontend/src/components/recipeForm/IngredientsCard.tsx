@@ -1,44 +1,78 @@
-type Ingredient = {
-  name: string;
-  amount: number;
-  unit: string;
-};
+"use client";
+
+import { Ingredient } from "@/services/recipes";
 
 type Props = {
-  initialIngredients?: Ingredient[];
+  ingredients: Ingredient[];
+  setIngredients: React.Dispatch<React.SetStateAction<Ingredient[]>>;
 };
 
-export default function IngredientsCard({ initialIngredients = [] }: Props) {
+export default function IngredientsCard({
+  ingredients,
+  setIngredients,
+}: Props) {
+  const handleChange = (
+    index: number,
+    field: keyof Ingredient,
+    value: string,
+  ) => {
+    setIngredients((prev) =>
+      prev.map((ingredient, i) =>
+        i === index ? { ...ingredient, [field]: value } : ingredient,
+      ),
+    );
+  };
+
+  const addIngredient = () => {
+    setIngredients((prev) => [
+      ...prev,
+      {
+        name: "",
+        quantity: "",
+        unit: "",
+      },
+    ]);
+  };
+
+  const removeIngredient = (index: number) => {
+    setIngredients((prev) => prev.filter((_, i) => i !== index));
+  };
+
   return (
     <section className="card">
-      <h2 className="section-title">
-        <span className="material-symbols-outlined icon-green">
-          shopping_basket
-        </span>
-        Ingredientes
-      </h2>
+      <h2>Ingredientes</h2>
 
-      {initialIngredients.map((ing, idx) => (
-        <div className="ingredient-row" key={idx}>
-          <input type="text" defaultValue={ing.name} />
-          <input type="number" defaultValue={ing.amount} />
-          <select defaultValue={ing.unit}>
-            <option>gramos (g)</option>
-            <option>kilogramos (kg)</option>
-            <option>mililitros (ml)</option>
-            <option>litros (l)</option>
-            <option>unidades</option>
-            <option>cucharadas</option>
-          </select>
-          <button type="button" className="delete-btn">
-            <span className="material-symbols-outlined">delete</span>
+      {ingredients.map((ingredient, index) => (
+        <div key={index} className="ingredient-row">
+          <input
+            type="text"
+            placeholder="Nombre"
+            value={ingredient.name}
+            onChange={(e) => handleChange(index, "name", e.target.value)}
+          />
+
+          <input
+            type="text"
+            placeholder="Cantidad"
+            value={ingredient.quantity}
+            onChange={(e) => handleChange(index, "quantity", e.target.value)}
+          />
+
+          <input
+            type="text"
+            placeholder="Unidad"
+            value={ingredient.unit}
+            onChange={(e) => handleChange(index, "unit", e.target.value)}
+          />
+
+          <button type="button" onClick={() => removeIngredient(index)}>
+            Eliminar
           </button>
         </div>
       ))}
 
-      <button type="button" className="add-btn">
-        <span className="material-symbols-outlined">add_circle</span>
-        Agregar ingrediente
+      <button type="button" onClick={addIngredient}>
+        + Añadir ingrediente
       </button>
     </section>
   );

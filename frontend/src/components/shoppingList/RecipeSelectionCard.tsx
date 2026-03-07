@@ -1,4 +1,32 @@
-export default function RecipeSelectionCard() {
+"use client";
+
+import { Recipe } from "@/services/recipes";
+
+type Props = {
+  recipes: Recipe[];
+  selectedRecipes: number[];
+  setSelectedRecipes: React.Dispatch<React.SetStateAction<number[]>>;
+  onGenerate: () => void;
+};
+
+export default function RecipeSelectionCard({
+  recipes,
+  selectedRecipes,
+  setSelectedRecipes,
+  onGenerate,
+}: Props) {
+  const toggleRecipe = (id: number) => {
+    setSelectedRecipes((prev) =>
+      prev.includes(id)
+        ? prev.filter((recipeId) => recipeId !== id)
+        : [...prev, id],
+    );
+  };
+
+  const clearSelection = () => {
+    setSelectedRecipes([]);
+  };
+
   return (
     <section className="card">
       <div className="card-header">
@@ -9,34 +37,37 @@ export default function RecipeSelectionCard() {
       </div>
 
       <div className="recipes">
-        <label className="recipe">
-          <input type="checkbox" />
-          <div>
-            <span>Pasta Carbonara</span>
-            <small>20 min • 4 personas</small>
-          </div>
-        </label>
+        {recipes.map((recipe) => (
+          <label key={recipe.id} className="recipe">
+            <input
+              type="checkbox"
+              checked={selectedRecipes.includes(recipe.id)}
+              onChange={() => toggleRecipe(recipe.id)}
+            />
 
-        <label className="recipe">
-          <input type="checkbox" />
-          <div>
-            <span>Ensalada César</span>
-            <small>15 min • 2 personas</small>
-          </div>
-        </label>
-
-        <label className="recipe">
-          <input type="checkbox" />
-          <div>
-            <span>Pollo al Horno</span>
-            <small>45 min • 4 personas</small>
-          </div>
-        </label>
+            <div>
+              <span>{recipe.title}</span>
+              <small>{recipe.Ingredients?.length ?? 0} ingredientes</small>
+            </div>
+          </label>
+        ))}
       </div>
 
       <div className="actions">
-        <button className="btn-secondary">Limpiar selección</button>
-        <button className="btn-primary">
+        <button
+          type="button"
+          className="btn-secondary"
+          onClick={clearSelection}
+        >
+          Limpiar selección
+        </button>
+
+        <button
+          type="button"
+          className="btn-primary"
+          onClick={onGenerate}
+          disabled={selectedRecipes.length === 0}
+        >
           <span className="material-symbols-outlined">receipt_long</span>
           Generar lista
         </button>
