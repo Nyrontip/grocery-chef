@@ -70,9 +70,9 @@ export default function DashboardPage() {
       setRecipes((prev) =>
         prev
           .map((r) =>
-            r.id === id ? { ...r, ...updated, Ingredients: r.Ingredients } : r
+            r.id === id ? { ...r, ...updated, Ingredients: r.Ingredients } : r,
           )
-          .filter((r) => (tab === "favorites" ? r.isFavorite : true))
+          .filter((r) => (tab === "favorites" ? r.isFavorite : true)),
       );
     } catch (err: any) {
       setError(err?.message ?? "No se pudo actualizar favorito");
@@ -83,7 +83,7 @@ export default function DashboardPage() {
     id: r.id,
     title: r.title,
     description: r.description ?? "",
-    isFavorite: r.isFavorite,
+    isFavorite: r.isFavorite ?? false,
     ingredients: r.Ingredients ?? [],
   }));
 
@@ -109,7 +109,10 @@ export default function DashboardPage() {
               <div className="empty-box">{emptyMessage}</div>
             </div>
           ) : (
-            <RecipesGrid recipes={gridItems} onToggleFavorite={handleToggleFavorite} />
+            <RecipesGrid
+              recipes={gridItems}
+              onToggleFavorite={handleToggleFavorite}
+            />
           )}
         </div>
       </main>
