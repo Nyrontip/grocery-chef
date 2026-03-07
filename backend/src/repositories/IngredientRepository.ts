@@ -10,4 +10,9 @@ export class IngredientRepository {
     } []) {
         return await Ingredient.bulkCreate(ingredients);
     }
+
+    // Eliminar todos los ingredientes de una receta (usado al editar)
+    async deleteByRecipe(recipeId: number) {
+        return await Ingredient.destroy({ where: { recipeId } });
+    }
 }
