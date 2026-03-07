@@ -19,12 +19,6 @@ export default function Header() {
         </nav>
 
         <div className={styles.headerActions}>
-          <input
-            type="text"
-            placeholder="Buscar recetas..."
-            className={styles.search}
-          />
-
           <button className={styles.btnPrimary}>Crear receta</button>
 
           <div className={styles.avatar}></div>

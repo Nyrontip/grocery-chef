@@ -1,21 +1,43 @@
-export default function Header() {
+type HeaderProps = {
+  isFavorite: boolean;
+  onBack: () => void;
+  onToggleFavorite: () => void;
+  onDelete: () => void;
+  onEdit: () => void;
+};
+
+export default function Header({
+  isFavorite,
+  onBack,
+  onToggleFavorite,
+  onDelete,
+  onEdit,
+}: HeaderProps) {
   return (
     <header className="header">
-      <a className="back-btn" href="#">
+      <button type="button" className="back-btn" onClick={onBack}>
         <span className="arrow">←</span>
         <span>Volver</span>
-      </a>
+      </button>
 
       <div className="header-buttons">
-        <button className="icon-btn">
-          <span className="material-symbols-outlined">star</span>
+        <button
+          type="button"
+          className={isFavorite ? "icon-btn active" : "icon-btn"}
+          onClick={onToggleFavorite}
+        >
+          <span className="material-symbols-outlined">
+            {isFavorite ? "star" : "star_outline"}
+          </span>
         </button>
 
-        <button className="icon-btn delete">
+        <button type="button" className="icon-btn delete" onClick={onDelete}>
           <span className="material-symbols-outlined">delete</span>
         </button>
 
-        <button className="edit-btn">Edit Recipe</button>
+        <button type="button" className="edit-btn" onClick={onEdit}>
+          Edit Recipe
+        </button>
       </div>
     </header>
   );
