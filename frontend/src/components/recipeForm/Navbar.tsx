@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import styles from "./Navbar.module.css";
 
 type NavbarProps = {
   onClose?: () => void; // Muestra botón de cerrar si se pasa
@@ -15,18 +16,18 @@ export default function Navbar({ onClose, showBack }: NavbarProps) {
   };
 
   return (
-    <header className="navbar">
-      <div className="logo">
-        <span className="material-symbols-outlined icon-green">
+    <header className={styles.navbar}>
+      <div className={styles.logo}>
+        <span className={`material-symbols-outlined ${styles.iconGreen}`}>
           restaurant_menu
         </span>
         <h2>Cocinero Pro</h2>
       </div>
 
-      <div className="navbar-actions">
+      <div className={styles.navbarActions}>
         {showBack && (
           <button
-            className="icon-btn back-btn"
+            className={`${styles.iconBtn} ${styles.backBtn}`}
             onClick={handleBack}
             type="button"
           >
@@ -35,7 +36,7 @@ export default function Navbar({ onClose, showBack }: NavbarProps) {
         )}
 
         {onClose && (
-          <button className="icon-btn" onClick={onClose} type="button">
+          <button className={styles.iconBtn} onClick={onClose} type="button">
             <span className="material-symbols-outlined">close</span>
           </button>
         )}

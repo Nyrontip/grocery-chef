@@ -9,7 +9,12 @@ import IngredientsCard from "@/components/recipe/IngredientsCard";
 import StepsCard from "@/components/recipe/StepsCard";
 import Footer from "@/components/recipe/Footer";
 
-import { deleteRecipe, getRecipeById, toggleFavorite, type Recipe } from "@/services/recipes";
+import {
+  deleteRecipe,
+  getRecipeById,
+  toggleFavorite,
+  type Recipe,
+} from "@/services/recipes";
 
 import "@/styles/recipe.css";
 
@@ -39,7 +44,8 @@ export default function RecipePage({ params }: RecipePageProps) {
 
         if (!cancelled) setRecipe(data);
       } catch (e) {
-        const message = e instanceof Error ? e.message : "Error cargando la receta";
+        const message =
+          e instanceof Error ? e.message : "Error cargando la receta";
         if (!cancelled) setError(message);
       } finally {
         if (!cancelled) setLoading(false);
@@ -60,21 +66,28 @@ export default function RecipePage({ params }: RecipePageProps) {
 
   async function handleToggleFavorite() {
     if (!recipe) return;
-    
+
     // Actualización optimista inmediata
     const newFavoriteState = !recipe.isFavorite;
-    setRecipe(prev => prev ? { ...prev, isFavorite: newFavoriteState } : null);
-    
+    setRecipe((prev) =>
+      prev ? { ...prev, isFavorite: newFavoriteState } : null,
+    );
+
     try {
       const token = localStorage.getItem("token") || undefined;
       const updated = await toggleFavorite(recipeId, token);
-      
+
       // Sincroniza con el estado real del servidor por si falló
-      setRecipe(prev => prev ? { ...prev, isFavorite: updated.isFavorite } : null);
+      setRecipe((prev) =>
+        prev ? { ...prev, isFavorite: updated.isFavorite } : null,
+      );
     } catch (e) {
       // Revierte si hubo error
-      setRecipe(prev => prev ? { ...prev, isFavorite: !newFavoriteState } : null);
-      const message = e instanceof Error ? e.message : "Error actualizando favorito";
+      setRecipe((prev) =>
+        prev ? { ...prev, isFavorite: !newFavoriteState } : null,
+      );
+      const message =
+        e instanceof Error ? e.message : "Error actualizando favorito";
       setError(message);
     }
   }
@@ -90,7 +103,8 @@ export default function RecipePage({ params }: RecipePageProps) {
       sessionStorage.setItem("toast", "Receta eliminada");
       router.push("/dashboard");
     } catch (e) {
-      const message = e instanceof Error ? e.message : "Error eliminando la receta";
+      const message =
+        e instanceof Error ? e.message : "Error eliminando la receta";
       setError(message);
     } finally {
       setSaving(false);
@@ -153,7 +167,10 @@ export default function RecipePage({ params }: RecipePageProps) {
             <p className="error-text">{error}</p>
           ) : recipe ? (
             <>
-              <Hero title={recipe.title} description={recipe.description || ""} />
+              <Hero
+                title={recipe.title}
+                description={recipe.description || ""}
+              />
 
               {saving && <p className="dashboard-state">Guardando...</p>}
 

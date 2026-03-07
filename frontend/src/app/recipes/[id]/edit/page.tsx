@@ -1,31 +1,56 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import Navbar from "@/components/recipeForm/Navbar";
 import BasicInfoCard from "@/components/recipeForm/BasicInfoCard";
 import IngredientsCard from "@/components/recipeForm/IngredientsCard";
 import StepsCard from "@/components/recipeForm/StepsCard";
 import FormActions from "@/components/recipeForm/FormActions";
+import { Ingredient } from "@/services/recipes";
 
 import { useRecipe } from "@/hooks/useRecipe";
 import { useEditRecipeForm } from "@/hooks/useEditRecipeForm";
 
 import "@/styles/recipeForm.css";
 
-export default function EditRecipePage({ params }: { params: { id: string } }) {
-  const recipeId = Number(params.id);
+type Props = { params: Promise<{ id: string }> };
 
+export default function EditRecipePage({ params }: Props) {
+  // Extraer id de params Promise
+  const { id } = React.use(params);
+  const recipeId = Number(id);
+
+  // Cargar receta
   const { recipe, loading } = useRecipe(recipeId);
 
-  const { ingredients, setIngredients, handleSubmit, handleCancel, updating } =
-    useEditRecipeForm(recipe, recipeId);
+  // Estados controlados para inputs
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [steps, setSteps] = useState("");
+  const [ingredients, setIngredients] = useState<Ingredient[]>([]);
 
-  if (loading) {
-    return <p>Cargando receta...</p>;
-  }
+  // Inicializar estados cuando se cargue la receta
+  useEffect(() => {
+    if (recipe) {
+      setTitle(recipe.title);
+      setDescription(recipe.description ?? "");
+      setSteps(recipe.steps ?? "");
+      setIngredients(recipe.Ingredients ?? []);
+    }
+  }, [recipe]);
 
-  if (!recipe) {
-    return <p>No se encontró la receta.</p>;
-  }
+  // Hook para manejar submit y cancel
+  const { handleSubmit, handleCancel, updating } = useEditRecipeForm(
+    recipe,
+    recipeId,
+    title,
+    description,
+    steps,
+    ingredients,
+  );
+
+  if (loading) return <p>Cargando receta...</p>;
+  if (!recipe) return <p>No se encontró la receta.</p>;
 
   return (
     <>
@@ -38,8 +63,10 @@ export default function EditRecipePage({ params }: { params: { id: string } }) {
 
         <form className="form" onSubmit={handleSubmit}>
           <BasicInfoCard
-            initialTitle={recipe.title}
-            initialDescription={recipe.description ?? ""}
+            title={title}
+            description={description}
+            onTitleChange={setTitle}
+            onDescriptionChange={setDescription}
           />
 
           <IngredientsCard
@@ -47,7 +74,7 @@ export default function EditRecipePage({ params }: { params: { id: string } }) {
             setIngredients={setIngredients}
           />
 
-          <StepsCard initialSteps={recipe.steps ?? ""} />
+          <StepsCard steps={steps} onStepsChange={setSteps} />
 
           <FormActions
             onCancel={handleCancel}

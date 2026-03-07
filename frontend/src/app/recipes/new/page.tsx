@@ -13,7 +13,6 @@ import "@/styles/recipeForm.css";
 
 export default function NewRecipePage() {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [steps, setSteps] = useState("");
@@ -60,7 +59,6 @@ export default function NewRecipePage() {
     }
 
     try {
-      setLoading(true);
       const token = localStorage.getItem("token") || undefined;
 
       const recipeData = {
@@ -76,8 +74,6 @@ export default function NewRecipePage() {
       router.push("/dashboard");
     } catch (error) {
       alert(error instanceof Error ? error.message : "Error creando la receta");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -100,14 +96,12 @@ export default function NewRecipePage() {
 
           <IngredientsCard
             ingredients={ingredients}
-            onAddIngredient={addIngredient}
-            onRemoveIngredient={removeIngredient}
-            onUpdateIngredient={updateIngredient}
+            setIngredients={setIngredients}
           />
 
           <StepsCard steps={steps} onStepsChange={setSteps} />
 
-          <FormActions loading={loading} />
+          <FormActions />
         </form>
       </main>
     </>
