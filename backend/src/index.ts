@@ -8,7 +8,13 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:4000",
+    "https://grocery-chef-frontend.vercel.app",
+  ],
+  credentials: true,
+}));
 app.use(express.json());
 
 app.use("/api", routes);
