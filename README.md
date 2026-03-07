@@ -13,7 +13,7 @@ El proyecto implementa consultas asincrónicas en el backend utilizando **Promis
 - **Frontend:** React + Vite + TypeScript
 - **Backend:** Node.js + Express + TypeScript
 - **Base de datos:** PostgreSQL
-- **ORM:** Prisma
+- **ORM:** Sequelize
 - **Autenticación:** JWT + bcrypt
 
 ## Autores

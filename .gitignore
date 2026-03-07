@@ -1,0 +1,74 @@
+# ==============================
+# NODE / NPM
+# ==============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ==============================
+# TYPESCRIPT
+# ==============================
+dist/
+build/
+*.tsbuildinfo
+
+# ==============================
+# VARIABLES DE ENTORNO
+# ==============================
+.env
+.env.*
+!.env.example
+
+# ==============================
+# DOCKER
+# ==============================
+docker-compose.override.yml
+
+# ==============================
+# LOGS
+# ==============================
+logs/
+*.log
+
+# ==============================
+# SISTEMA OPERATIVO
+# ==============================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==============================
+# EDITORES
+# ==============================
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ==============================
+# NEXT.JS (frontend)
+# ==============================
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.turbo/
+frontend/.cache/
+frontend/coverage/
+frontend/next-env.d.ts
+
+# ==============================
+# FRONTEND BUILD (si usan vite u otros)
+# ==============================
+frontend/dist/
+frontend/build/
+frontend/.vite/
+
+# ==============================
+# MISC
+# ==============================
+coverage/
+.nyc_output/

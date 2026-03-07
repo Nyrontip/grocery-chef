@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Mis Recetas - Dashboard</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="logo">
+        <span class="material-symbols-outlined icon">restaurant_menu</span>
+        <h2>Mis Recetas</h2>
+      </div>
+
+      <nav class="nav">
+        <a href="#">Dashboard</a>
+
+        <a href="#" class="cart">
+          <span class="material-symbols-outlined">shopping_cart</span>
+          Lista de Compras
+        </a>
+      </nav>
+
+      <div class="header-actions">
+        <input type="text" placeholder="Buscar recetas..." class="search" />
+
+        <button class="btn-primary">Crear receta</button>
+
+        <div class="avatar"></div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="title">
+        <h1>Mi Cocina</h1>
+        <p>Gestiona y descubre tus platos favoritos.</p>
+      </div>
+
+      <div class="tabs">
+        <div class="tab active">
+          <span class="material-symbols-outlined">grid_view</span>
+          Todas
+        </div>
+      </div>
+
+      <div class="recipes">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-header">
+              <h3>Paella Valenciana</h3>
+
+              <span class="time">35 min</span>
+            </div>
+
+            <p>
+              Receta tradicional con arroz bomba, azafrán de hebra y una
+              selección de mariscos frescos del Mediterráneo.
+            </p>
+
+            <button class="btn-secondary">
+              Ver detalle
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <div class="card-header">
+              <h3>Tacos al Pastor</h3>
+
+              <span class="time">25 min</span>
+            </div>
+
+            <p>
+              Auténticos tacos mexicanos con carne de cerdo marinada en achiote,
+              piña asada, cilantro y cebolla.
+            </p>
+
+            <button class="btn-secondary">
+              Ver detalle
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <div class="card-header">
+              <h3>Ensalada César</h3>
+
+              <span class="time">15 min</span>
+            </div>
+
+            <p>
+              Clásica y refrescante ensalada con lechuga romana, aderezo cremoso
+              casero, crutones de ajo y parmesano.
+            </p>
+
+            <button class="btn-secondary">
+              Ver detalle
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <span class="material-symbols-outlined">restaurant_menu</span>
+          <span>Mis Recetas</span>
+        </div>
+
+        <p>© 2024 Mis Recetas. Hecho con amor para cocineros.</p>
+
+        <div class="footer-icons">
+          <span class="material-symbols-outlined">share</span>
+          <span class="material-symbols-outlined">mail</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

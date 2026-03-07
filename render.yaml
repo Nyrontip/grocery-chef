@@ -1,0 +1,50 @@
+# Este archivo le dice a Render qué servicios crear: DB + backend
+
+services:
+  # ── Backend (Web Service) ─────────────────────────────
+  - type: web
+    name: recetario-backend
+    runtime: docker                  # Usamos el Dockerfile que ya tenemos
+    rootDir: backend                 # Apunta a la carpeta /backend del repo
+    dockerfilePath: ./Dockerfile     # Relativo al rootDir
+    plan: free
+    region: virginia                   # Misma región que la DB (ver abajo)
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: NODE_ENV
+        value: production
+      - key: DB_HOST
+        fromDatabase:
+          name: recetario-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: recetario-db
+          property: port
+      - key: DB_USER
+        fromDatabase:
+          name: recetario-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: recetario-db
+          property: password
+      - key: DB_NAME
+        fromDatabase:
+          name: recetario-db
+          property: database
+      - key: DB_SSL
+        value: "true"
+      - key: JWT_SECRET
+        generateValue: true          # Render genera un valor seguro automáticamente
+
+# ── Base de datos PostgreSQL ──────────────────────────
+databases:
+  - name: recetario-db
+    plan: free
+    region: virginia
+    databaseName: recetario_db
+    user: recetario_user
+    postgresMajorVersion: 15

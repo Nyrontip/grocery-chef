@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Mis Recetas</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <main>
+      <div class="card">
+        <div class="title">
+          <h1>Crear cuenta</h1>
+          <p>
+            Únete a nuestra comunidad de cocina y guarda tus platos favoritos
+          </p>
+        </div>
+
+        <form>
+          <div class="input-group">
+            <label>Nombre completo</label>
+
+            <div class="input-container">
+              <span class="material-symbols-outlined">person</span>
+              <input type="text" placeholder="Tu nombre y apellidos" />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Correo electrónico</label>
+
+            <div class="input-container">
+              <span class="material-symbols-outlined">mail</span>
+              <input type="email" placeholder="ejemplo@correo.com" />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Contraseña</label>
+
+            <div class="input-container">
+              <span class="material-symbols-outlined">lock</span>
+
+              <input
+                type="password"
+                placeholder="Min. 8 caracteres"
+                id="password"
+              />
+
+              <button type="button" class="eye">
+                <span class="material-symbols-outlined">visibility</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="terms">
+            <input type="checkbox" id="terms" />
+
+            <label for="terms">
+              Acepto los <a href="#">términos y condiciones</a>
+            </label>
+          </div>
+
+          <button class="btn">Crear cuenta</button>
+        </form>
+
+        <div class="login">
+          <p>¿Ya tienes cuenta? <a href="#">Iniciar sesión</a></p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2024 Mis Recetas • Hecho para amantes de la cocina</p>
+    </footer>
+  </body>
+</html>
