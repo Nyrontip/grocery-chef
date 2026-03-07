@@ -27,7 +27,6 @@ export default function LoginCard() {
           <div className="form-group">
             <div className="label-row">
               <label>Contraseña</label>
-              <a href="#">¿Olvidaste tu contraseña?</a>
             </div>
 
             <InputField type="password" placeholder="••••••••" icon="lock" />
