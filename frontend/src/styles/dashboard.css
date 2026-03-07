@@ -18,13 +18,22 @@ body {
   padding: 40px;
 }
 
+.title {
+  margin-bottom: 32px;
+}
+
 .title h1 {
   font-size: 32px;
   margin-bottom: 5px;
+  text-align: left;
 }
 
 .title p {
   color: #64748b;
+}
+
+.dashboard-content {
+  width: 100%;
 }
 
 /* TABS */
@@ -42,17 +51,64 @@ body {
   align-items: center;
   gap: 6px;
   font-weight: 700;
-  color: #22c55e;
+  color: #64748b;
   cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0 4px 10px;
+  border-bottom: 3px solid transparent;
+}
+
+.tab.active {
+  color: #22c55e;
+  border-bottom-color: #22c55e;
 }
 
 /* RECIPES GRID */
 
 .recipes {
-  margin-top: 30px;
+  margin-top: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: 1fr;
   gap: 25px;
+  justify-items: stretch;
+}
+
+@media (min-width: 768px) {
+  .recipes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .recipes {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.empty-box {
+  margin-top: 0;
+  padding: 28px;
+  border: 2px dashed #e2e8f0;
+  background: #f8fafc;
+  border-radius: 16px;
+  color: #64748b;
+  font-size: 14px;
+  text-align: left;
+  display: block;
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  justify-self: stretch;
+  align-self: start;
+  grid-column: 1 / -1;
+}
+
+.dashboard-state {
+  margin-top: 28px;
+  color: #64748b;
+  font-size: 14px;
 }
 
 .card {
@@ -76,13 +132,51 @@ body {
   margin-bottom: 10px;
 }
 
-.time {
+.card-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  padding: 4px;
+  line-height: 0;
+}
+
+.icon-btn.active {
+  color: #f59e0b;
+}
+
+.pill {
   background: #dcfce7;
   color: #22c55e;
   font-size: 12px;
   padding: 4px 8px;
   border-radius: 10px;
   font-weight: 600;
+}
+
+.ingredients-preview {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ingredient-item {
+  font-size: 12px;
+  color: #475569;
+  background: #f1f5f9;
+  border-radius: 999px;
+  padding: 6px 10px;
+}
+
+.ingredient-item.more {
+  color: #64748b;
 }
 
 .card p {
@@ -99,12 +193,18 @@ body {
   justify-content: center;
   align-items: center;
   gap: 5px;
-  background: #f1f5f9;
-  border: none;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #475569;
   padding: 10px;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
+}
+
+.btn-secondary:hover {
+  border-color: #22c55e;
+  color: #0f172a;
 }
 
 /* FOOTER */

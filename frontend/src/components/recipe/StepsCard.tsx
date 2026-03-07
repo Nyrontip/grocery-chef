@@ -5,16 +5,19 @@ type StepsCardProps = {
 export default function StepsCard({ steps }: StepsCardProps) {
   return (
     <div className="steps-card">
-      <h3>Preparation Steps</h3>
-      <p>
+      <h3 className="section-title">
+        <span className="material-symbols-outlined section-icon">set_meal</span>
+        Preparation Steps
+      </h3>
+
+      <div className="steps-list">
         {steps.map((step, i) => (
-          <span key={i}>
-            {i + 1}. {step}
-            <br />
-            <br />
-          </span>
+          <div key={i} className="step-item">
+            <span className="step-number">{i + 1}</span>
+            <p className="step-text">{step}</p>
+          </div>
         ))}
-      </p>
+      </div>
     </div>
   );
 }

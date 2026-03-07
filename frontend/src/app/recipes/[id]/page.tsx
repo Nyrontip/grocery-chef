@@ -1,50 +1,179 @@
-import Header from "@/components/recipe/Header";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
+import Header from "@/components/shared/Header";
 import Hero from "@/components/recipe/Hero";
-import StatsCard from "@/components/recipe/StatsCard";
 import IngredientsCard from "@/components/recipe/IngredientsCard";
 import StepsCard from "@/components/recipe/StepsCard";
 import Footer from "@/components/recipe/Footer";
 
+import { deleteRecipe, getRecipeById, toggleFavorite, type Recipe } from "@/services/recipes";
+
 import "@/styles/recipe.css";
 
-export default function RecipePage() {
+type RecipePageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export default function RecipePage({ params }: RecipePageProps) {
+  const { id } = React.use(params);
+  const recipeId = Number(id);
+  const router = useRouter();
+  const [recipe, setRecipe] = useState<Recipe | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function run() {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const token = localStorage.getItem("token") || undefined;
+        const data = await getRecipeById(recipeId, token);
+
+        if (!cancelled) setRecipe(data);
+      } catch (e) {
+        const message = e instanceof Error ? e.message : "Error cargando la receta";
+        if (!cancelled) setError(message);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+
+    if (!Number.isFinite(recipeId)) {
+      setError("ID de receta inválido");
+      setLoading(false);
+      return;
+    }
+
+    run();
+    return () => {
+      cancelled = true;
+    };
+  }, [recipeId]);
+
+  async function handleToggleFavorite() {
+    if (!recipe) return;
+    try {
+      setSaving(true);
+      const token = localStorage.getItem("token") || undefined;
+      const updated = await toggleFavorite(recipeId, token);
+      setRecipe((prev) =>
+        prev
+          ? {
+              ...prev,
+              ...updated,
+              Ingredients: updated.Ingredients?.length ? updated.Ingredients : prev.Ingredients,
+            }
+          : prev
+      );
+    } catch (e) {
+      const message = e instanceof Error ? e.message : "Error actualizando favorito";
+      setError(message);
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function handleDelete() {
+    if (!window.confirm("¿Eliminar esta receta?")) return;
+
+    try {
+      setSaving(true);
+      const token = localStorage.getItem("token") || undefined;
+      await deleteRecipe(recipeId, token);
+
+      sessionStorage.setItem("toast", "Receta eliminada");
+      router.push("/dashboard");
+    } catch (e) {
+      const message = e instanceof Error ? e.message : "Error eliminando la receta";
+      setError(message);
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  function handleBack() {
+    router.back();
+  }
+
+  function handleEdit() {
+    router.push(`/recipes/${recipeId}/edit`);
+  }
+
   return (
     <div className="container">
       <Header />
 
-      <Hero
-        title="Mediterranean Quinoa Salad"
-        description="A vibrant and nutritious powerhouse packed with protein-rich quinoa, crisp cucumbers, sun-ripened tomatoes, and a zesty lemon-herb vinaigrette."
-        tags={["Healthy", "Vegan"]}
-      />
+      <div className="detail-container">
+        <div className="detail-actions">
+          <button type="button" className="back-btn" onClick={handleBack}>
+            <span className="material-symbols-outlined">arrow_back</span>
+            <span>Volver</span>
+          </button>
 
-      <div className="grid">
-        <div className="left-column">
-          <StatsCard time="25 min" calories="320 kcal" serves="4 Pers." />
-          <IngredientsCard
-            ingredients={[
-              "1 cup uncooked quinoa",
-              "2 cups vegetable broth",
-              "1 English cucumber, diced",
-              "1 pint cherry tomatoes",
-              "1/2 cup Kalamata olives",
-              "1/4 cup olive oil",
-              "Juice of 1 lemon",
-              "Fresh parsley and mint",
-            ]}
-          />
+          <div className="header-buttons">
+            <button
+              type="button"
+              className={recipe?.isFavorite ? "icon-btn active" : "icon-btn"}
+              onClick={handleToggleFavorite}
+              disabled={saving || loading}
+            >
+              <span className="material-symbols-outlined">star</span>
+            </button>
+
+            <button
+              type="button"
+              className="icon-btn delete"
+              onClick={handleDelete}
+              disabled={saving || loading}
+            >
+              <span className="material-symbols-outlined">delete</span>
+            </button>
+
+            <button
+              type="button"
+              className="edit-btn"
+              onClick={handleEdit}
+              disabled={saving || loading}
+            >
+              Edit Recipe
+            </button>
+          </div>
         </div>
 
-        <div className="right-column">
-          <StepsCard
-            steps={[
-              "Rinse quinoa and cook with vegetable broth for 15 minutes.",
-              "Chop cucumber, tomatoes, olives and herbs.",
-              "Mix olive oil, lemon juice, garlic, oregano, salt and pepper.",
-              "Combine everything and toss well. Serve chilled or room temperature.",
-            ]}
-          />
-        </div>
+        {loading ? (
+          <p className="dashboard-state">Cargando...</p>
+        ) : error ? (
+          <p className="error-text">{error}</p>
+        ) : recipe ? (
+          <>
+            <Hero title={recipe.title} description={recipe.description || ""} />
+
+            {saving && <p className="dashboard-state">Guardando...</p>}
+
+            <div className="grid">
+              <div className="left-column">
+                <IngredientsCard ingredients={recipe.Ingredients || []} />
+              </div>
+
+              <div className="right-column">
+                <StepsCard
+                  steps={(recipe.steps || "")
+                    .split("\n")
+                    .map((s) => s.trim())
+                    .filter(Boolean)}
+                />
+              </div>
+            </div>
+          </>
+        ) : null}
       </div>
 
       <Footer />

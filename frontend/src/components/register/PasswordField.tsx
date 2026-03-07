@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 
-export default function PasswordField() {
+type Props = {
+  name?: string;
+  value?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+};
+
+export default function PasswordField({ name, value, onChange }: Props) {
   const [show, setShow] = useState(false);
 
   return (
@@ -13,8 +19,11 @@ export default function PasswordField() {
         <span className="material-symbols-outlined">lock</span>
 
         <input
+          name={name}
           type={show ? "text" : "password"}
           placeholder="Min. 8 caracteres"
+          value={value}
+          onChange={onChange}
         />
 
         <button type="button" className="eye" onClick={() => setShow(!show)}>
