@@ -13,7 +13,7 @@ export type Recipe = {
   id: number;
   title: string;
   description: string | null;
-  Ingredients: Ingredient[];
+  ingredients: Ingredient[];
   steps: string;
   isFavorite: boolean;
 };

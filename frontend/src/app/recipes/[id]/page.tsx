@@ -60,24 +60,22 @@ export default function RecipePage({ params }: RecipePageProps) {
 
   async function handleToggleFavorite() {
     if (!recipe) return;
+    
+    // Actualización optimista inmediata
+    const newFavoriteState = !recipe.isFavorite;
+    setRecipe(prev => prev ? { ...prev, isFavorite: newFavoriteState } : null);
+    
     try {
-      setSaving(true);
       const token = localStorage.getItem("token") || undefined;
       const updated = await toggleFavorite(recipeId, token);
-      setRecipe((prev) =>
-        prev
-          ? {
-              ...prev,
-              ...updated,
-              Ingredients: updated.Ingredients?.length ? updated.Ingredients : prev.Ingredients,
-            }
-          : prev
-      );
+      
+      // Sincroniza con el estado real del servidor por si falló
+      setRecipe(prev => prev ? { ...prev, isFavorite: updated.isFavorite } : null);
     } catch (e) {
+      // Revierte si hubo error
+      setRecipe(prev => prev ? { ...prev, isFavorite: !newFavoriteState } : null);
       const message = e instanceof Error ? e.message : "Error actualizando favorito";
       setError(message);
-    } finally {
-      setSaving(false);
     }
   }
 
@@ -108,75 +106,77 @@ export default function RecipePage({ params }: RecipePageProps) {
   }
 
   return (
-    <div className="container">
+    <>
       <Header />
 
-      <div className="detail-container">
-        <div className="detail-actions">
-          <button type="button" className="back-btn" onClick={handleBack}>
-            <span className="material-symbols-outlined">arrow_back</span>
-            <span>Volver</span>
-          </button>
-
-          <div className="header-buttons">
-            <button
-              type="button"
-              className={recipe?.isFavorite ? "icon-btn active" : "icon-btn"}
-              onClick={handleToggleFavorite}
-              disabled={saving || loading}
-            >
-              <span className="material-symbols-outlined">star</span>
+      <div className="container">
+        <div className="detail-container">
+          <div className="detail-actions">
+            <button type="button" className="back-btn" onClick={handleBack}>
+              <span className="material-symbols-outlined">arrow_back</span>
+              <span>Volver</span>
             </button>
 
-            <button
-              type="button"
-              className="icon-btn delete"
-              onClick={handleDelete}
-              disabled={saving || loading}
-            >
-              <span className="material-symbols-outlined">delete</span>
-            </button>
+            <div className="header-buttons">
+              <button
+                type="button"
+                className={recipe?.isFavorite ? "icon-btn active" : "icon-btn"}
+                onClick={handleToggleFavorite}
+                disabled={loading}
+              >
+                <span className="material-symbols-outlined">star</span>
+              </button>
 
-            <button
-              type="button"
-              className="edit-btn"
-              onClick={handleEdit}
-              disabled={saving || loading}
-            >
-              Edit Recipe
-            </button>
-          </div>
-        </div>
+              <button
+                type="button"
+                className="icon-btn delete"
+                onClick={handleDelete}
+                disabled={saving || loading}
+              >
+                <span className="material-symbols-outlined">delete</span>
+              </button>
 
-        {loading ? (
-          <p className="dashboard-state">Cargando...</p>
-        ) : error ? (
-          <p className="error-text">{error}</p>
-        ) : recipe ? (
-          <>
-            <Hero title={recipe.title} description={recipe.description || ""} />
-
-            {saving && <p className="dashboard-state">Guardando...</p>}
-
-            <div className="grid">
-              <div className="left-column">
-                <IngredientsCard ingredients={recipe.Ingredients || []} />
-              </div>
-
-              <div className="right-column">
-                <StepsCard
-                  steps={(recipe.steps || "")
-                    .split("\n")
-                    .map((s) => s.trim())
-                    .filter(Boolean)}
-                />
-              </div>
+              <button
+                type="button"
+                className="edit-btn"
+                onClick={handleEdit}
+                disabled={saving || loading}
+              >
+                Edit Recipe
+              </button>
             </div>
-          </>
-        ) : null}
+          </div>
+
+          {loading ? (
+            <p className="dashboard-state">Cargando...</p>
+          ) : error ? (
+            <p className="error-text">{error}</p>
+          ) : recipe ? (
+            <>
+              <Hero title={recipe.title} description={recipe.description || ""} />
+
+              {saving && <p className="dashboard-state">Guardando...</p>}
+
+              <div className="grid">
+                <div className="left-column">
+                  <IngredientsCard ingredients={recipe.Ingredients || []} />
+                </div>
+
+                <div className="right-column">
+                  <StepsCard
+                    steps={(recipe.steps || "")
+                      .split("\n")
+                      .map((s) => s.trim())
+                      .filter(Boolean)}
+                  />
+                </div>
+              </div>
+            </>
+          ) : null}
+        </div>
       </div>
 
       <Footer />
-    </div>
+    </>
   );
 }

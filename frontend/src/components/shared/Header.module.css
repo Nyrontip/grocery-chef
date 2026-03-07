@@ -74,8 +74,9 @@
   border: none;
   padding: 10px 18px;
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .btnPrimary:hover {
@@ -88,7 +89,11 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCagDj47NrOFMjwwwTEK2zFLINNOzbts3fg0PXOPDZzEHOf_bFZIveKci1Ddq8-qWd9Z1SZ2bscGzff-7RkUTDz7dOwRyIcwU5kuDcCsXKY1IoSyQeG9Tir_-xK5Jw9OhfxmBvkGwX36fd6p9oC7Lzy4WnnnijLTZohnkJgT9gazlKHlyC_UZsHrzE_jUDbk094utn3Y49ICKzWUtaB3C3rw_HddUjOT_C4Grhv6v5dT3GkiwwqqaSOOgC3rAfORKtnPW-rfKw3VPQ");
-  background-size: cover;
-  background-position: center;
+  background: #22c55e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
 }
