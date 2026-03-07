@@ -11,6 +11,7 @@ export default function IngredientsCard({
   ingredients,
   setIngredients,
 }: Props) {
+  // Actualiza un ingrediente
   const handleChange = (
     index: number,
     field: keyof Ingredient,
@@ -23,17 +24,15 @@ export default function IngredientsCard({
     );
   };
 
+  // Añade un ingrediente vacío
   const addIngredient = () => {
     setIngredients((prev) => [
       ...prev,
-      {
-        name: "",
-        quantity: "",
-        unit: "",
-      },
+      { name: "", quantity: "", unit: "gramos (g)" },
     ]);
   };
 
+  // Elimina un ingrediente por índice
   const removeIngredient = (index: number) => {
     setIngredients((prev) => prev.filter((_, i) => i !== index));
   };
@@ -42,37 +41,48 @@ export default function IngredientsCard({
     <section className="card">
       <h2>Ingredientes</h2>
 
-      {ingredients.map((ingredient, index) => (
-        <div key={index} className="ingredient-row">
-          <input
-            type="text"
-            placeholder="Nombre"
-            value={ingredient.name}
-            onChange={(e) => handleChange(index, "name", e.target.value)}
-          />
+      <div className="ingredients-list">
+        {ingredients.map((ingredient, idx) => (
+          <div className="ingredient-row" key={idx}>
+            <input
+              type="text"
+              placeholder="Ingrediente"
+              value={ingredient.name}
+              onChange={(e) => handleChange(idx, "name", e.target.value)}
+              required={idx === 0}
+            />
+            <input
+              type="text"
+              placeholder="Cantidad"
+              value={ingredient.quantity}
+              onChange={(e) => handleChange(idx, "quantity", e.target.value)}
+              required={idx === 0}
+            />
+            <select
+              value={ingredient.unit}
+              onChange={(e) => handleChange(idx, "unit", e.target.value)}
+            >
+              <option>gramos (g)</option>
+              <option>kilogramos (kg)</option>
+              <option>mililitros (ml)</option>
+              <option>litros (l)</option>
+              <option>unidades</option>
+              <option>cucharadas</option>
+            </select>
+            <button
+              type="button"
+              className="delete-btn"
+              onClick={() => removeIngredient(idx)}
+            >
+              <span className="material-symbols-outlined">delete</span>
+            </button>
+          </div>
+        ))}
+      </div>
 
-          <input
-            type="text"
-            placeholder="Cantidad"
-            value={ingredient.quantity}
-            onChange={(e) => handleChange(index, "quantity", e.target.value)}
-          />
-
-          <input
-            type="text"
-            placeholder="Unidad"
-            value={ingredient.unit}
-            onChange={(e) => handleChange(index, "unit", e.target.value)}
-          />
-
-          <button type="button" onClick={() => removeIngredient(index)}>
-            Eliminar
-          </button>
-        </div>
-      ))}
-
-      <button type="button" onClick={addIngredient}>
-        + Añadir ingrediente
+      <button type="button" className="add-btn" onClick={addIngredient}>
+        <span className="material-symbols-outlined">add_circle</span>
+        Agregar ingrediente
       </button>
     </section>
   );

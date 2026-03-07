@@ -45,12 +45,10 @@ export default function ShoppingListPage() {
 
     try {
       const token = localStorage.getItem("token") ?? undefined;
-
       const ingredients = await getIngredientsByRecipesIds(
         selectedRecipes,
         token,
       );
-
       setIngredients(ingredients);
     } catch (error) {
       console.error("Error generando lista:", error);
@@ -64,7 +62,6 @@ export default function ShoppingListPage() {
   return (
     <>
       <Header />
-
       <main className="main">
         <div className="container">
           <RecipeSelectionCard
@@ -73,7 +70,6 @@ export default function ShoppingListPage() {
             setSelectedRecipes={setSelectedRecipes}
             onGenerate={handleGenerate}
           />
-
           <ShoppingTableCard ingredients={ingredients} />
         </div>
       </main>
