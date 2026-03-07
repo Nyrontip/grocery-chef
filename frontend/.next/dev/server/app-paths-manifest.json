@@ -1,10 +1,1 @@
-{
-  "/_not-found/page": "app/_not-found/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/page": "app/page.js",
-  "/recipes/[id]/edit/page": "app/recipes/[id]/edit/page.js",
-  "/recipes/[id]/page": "app/recipes/[id]/page.js",
-  "/recipes/[id]/update/page": "app/recipes/[id]/update/page.js",
-  "/recipes/new/page": "app/recipes/new/page.js",
-  "/shopping-list/page": "app/shopping-list/page.js"
-}
+{}

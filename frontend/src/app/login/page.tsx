@@ -1,4 +1,4 @@
-import LoginCard from "@/components/LoginCard";
+import LoginCard from "@/components/auth/LoginCard";
 import FooterInfo from "@/components/FooterInfo";
 import "@/styles/login.css";
 

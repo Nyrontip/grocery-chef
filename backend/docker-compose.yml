@@ -22,7 +22,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      PORT: 3000
+      PORT: ${PORT}
       DB_HOST: db
       DB_PORT: ${DB_PORT}
       DB_USER: admin
