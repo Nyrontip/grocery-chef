@@ -72,3 +72,5 @@ frontend/.vite/
 # ==============================
 coverage/
 .nyc_output/
+
+backend/request.txt

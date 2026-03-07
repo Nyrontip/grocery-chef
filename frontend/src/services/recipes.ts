@@ -13,9 +13,9 @@ export type Recipe = {
   id: number;
   title: string;
   description: string | null;
-  ingredients: Ingredient[];
+  Ingredients?: Ingredient[];
   steps: string;
-  isFavorite: boolean;
+  isFavorite?: boolean;
 };
 
 // GET /api/recipes
@@ -33,14 +33,14 @@ export const getRecipeById = (id: number, token?: string) =>
 // POST /api/recipes
 export const createRecipe = (
   data: Omit<Recipe, "id" | "isFavorite">,
-  token?: string
+  token?: string,
 ) => api.post<Recipe>("/recipes", data, token);
 
 // PUT /api/recipes/:id
 export const updateRecipe = (
   id: number,
   data: Omit<Recipe, "id" | "isFavorite">,
-  token?: string
+  token?: string,
 ) => api.put<Recipe>(`/recipes/${id}`, data, token);
 
 // DELETE /api/recipes/:id
@@ -50,3 +50,7 @@ export const deleteRecipe = (id: number, token?: string) =>
 // PATCH /api/recipes/:id/favorite
 export const toggleFavorite = (id: number, token?: string) =>
   api.patch<Recipe>(`/recipes/${id}/favorite`, {}, token);
+
+// POST /api/recipes/Ingredients/by-ids
+export const getIngredientsByRecipesIds = (ids: number[], token?: string) =>
+  api.post<Ingredient[]>("/recipes/Ingredients/by-ids", { ids }, token);

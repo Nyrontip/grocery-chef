@@ -1,0 +1,25 @@
+- get all recetas
+- get receta por id
+- update receta por id
+- get ingredients por idReceta
+
+- ventana editar receta
+
+get receta por id --
+poner los datos --
+
+al guardar tomar toda la info
+update receta por id
+
+- ventana lista de compras
+get all recetas
+mostrar en tarjetas
+
+cuando boton genenar lista tomar todos los chekeados
+get ingredients por idReceta
+renderizar ingredientes
+
+
+
+
+

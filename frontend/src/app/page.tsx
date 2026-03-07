@@ -1,5 +1,13 @@
-import styles from "./page.module.css";
+import LoginCard from "@/components/auth/LoginCard";
+import FooterInfo from "@/components/FooterInfo";
+import "@/styles/login.css";
+import "@/styles/auth-errors.css";
 
-export default function Home() {
-  return <div className={styles.page}>HOLA</div>;
+export default function LoginPage() {
+  return (
+    <div className="container">
+      <LoginCard />
+      <FooterInfo />
+    </div>
+  );
 }

@@ -1,0 +1,72 @@
+/* Navbar.module.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Cambié flex-start a space-between para separar logo y acciones */
+  align-items: center;
+  padding: 12px 24px;
+  border-bottom: 1px solid #e2e8f0;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  /* height opcional, se puede omitir para flexibilidad */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.icon-green {
+  color: #22c55e;
+  font-size: 28px;
+}
+
+.navbarActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* BOTONES ICONO */
+
+.iconBtn {
+  background: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  color: #64748b;
+  padding: 6px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.iconBtn:hover {
+  border: 1px solid #22c55e;
+  color: #22c55e;
+  background: #f0fdf4;
+}
+
+.backBtn {
+  margin-left: -10px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 14px 16px;
+  }
+
+  .logo h2 {
+    font-size: 16px;
+  }
+}
