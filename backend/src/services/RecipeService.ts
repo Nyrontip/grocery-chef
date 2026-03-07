@@ -83,20 +83,20 @@ export class RecipeService {
       title?: string;
       description?: string;
       steps?: string;
-      ingredients?: { name: string; quantity: number; unit: string }[];
+      Ingredients?: { name: string; quantity: number; unit: string }[];
     },
   ) {
-    const { ingredients, ...recipeFields } = data;
+    const { Ingredients, ...recipeFields } = data;
 
     // Actualizar campos de la receta
     const recipe = await this.recipeRepository.update(id, userId, recipeFields);
     if (!recipe) throw new Error("Recipe not found");
 
     // Si vienen ingredientes, reemplazar los existentes
-    if (ingredients !== undefined) {
+    if (Ingredients !== undefined) {
       await this.ingredientRepository.deleteByRecipe(id);
-      if (ingredients.length > 0) {
-        const ingredientsData = ingredients.map((ing) => ({
+      if (Ingredients.length > 0) {
+        const ingredientsData = Ingredients.map((ing) => ({
           ...ing,
           recipeId: id,
         }));
