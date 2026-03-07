@@ -1,8 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 13, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
-    {"offset": {"line": 16, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
-    {"offset": {"line": 20, "column": 0}, "map": {"version":3,"sources":["file:///home/simondavid/Escritorio/DEVELOP/GroceryChef/frontend/src/app/login/page.tsx"],"sourcesContent":["import LoginCard from \"@/components/LoginCard\";\nimport FooterInfo from \"@/components/FooterInfo\";\nimport \"@/styles/login.css\";\n\nexport default function LoginPage() {\n  return (\n    <div className=\"container\">\n      <LoginCard />\n      <FooterInfo />\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;AAAA;AACA;;;;;AAGe,SAAS;IACtB,qBACE,8OAAC;QAAI,WAAU;;0BACb,8OAAC,0IAAS;;;;;0BACV,8OAAC,2IAAU;;;;;;;;;;;AAGjB"}}]
-}
