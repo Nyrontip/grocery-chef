@@ -1,0 +1,8 @@
+bun add -g vercel@latest
+
+vercel login
+
+vercel
+
+vercel --prod
+

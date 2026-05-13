@@ -69,13 +69,13 @@ export const updateRecipe = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user!.id;
     const recipeId = Number(req.params.id);
-    const { title, description, steps, ingredients } = req.body;
+    const { title, description, steps, Ingredients } = req.body;
 
     const recipe = await recipeService.update(recipeId, userId, {
       title,
       description,
       steps,
-      ingredients,
+      Ingredients,
     });
 
     res.json(recipe);
